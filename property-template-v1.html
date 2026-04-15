@@ -20,6 +20,8 @@
       --bg-dark-2: #161c24;
       --border: #e9ecef;
       --gold: #c9a96e;
+      --color-text-primary: var(--text);
+      --color-text-body: var(--body);
       --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
       --font-serif: 'Lora', Georgia, serif;
       --nav-h: 56px;
@@ -354,6 +356,110 @@
     .gallery-expand-btn:hover {
       background: #fff;
       border-color: var(--muted);
+    }
+
+    .section-features {
+      background: var(--bg-light);
+      padding: 4.5rem 1.5rem;
+    }
+    .section-features .eyebrow {
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .features-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .features-acc-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .features-acc-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+    .features-acc__trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+      padding: 1rem 0;
+      margin: 0;
+      border: none;
+      background: transparent;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      text-align: left;
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+    }
+    .features-acc__trigger:hover {
+      color: var(--blue);
+    }
+    .features-acc__chevron {
+      flex-shrink: 0;
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+    .features-acc__chevron svg {
+      width: 14px;
+      height: 14px;
+      display: block;
+    }
+    .features-acc__trigger[aria-expanded="true"] .features-acc__chevron {
+      transform: rotate(180deg);
+    }
+    .features-acc__panel {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease;
+    }
+    .features-acc__panel.is-open {
+      max-height: 4000px;
+    }
+    .features-acc__inner {
+      padding-bottom: 1.15rem;
+    }
+    .features-acc__list {
+      list-style: none;
+      margin: 0;
+      padding: 0 0 0.25rem;
+    }
+    .features-acc__list li {
+      display: flex;
+      align-items: flex-start;
+      margin: 0 0 18px 0;
+      padding: 0;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--color-text-body);
+    }
+    .features-acc__list li:last-child {
+      margin-bottom: 0;
+    }
+    .features-acc__list li::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      margin-right: 10px;
+      margin-top: 0.55em;
+      vertical-align: middle;
+      flex-shrink: 0;
+      background: rgba(64, 134, 185, 0.5);
+    }
+    .features-acc__list li > span {
+      flex: 1;
+      min-width: 0;
     }
 
     .section-video {
@@ -817,6 +923,13 @@
     </div>
   </section>
 
+  <section class="section-features" id="features" hidden>
+    <div class="features-inner">
+      <p class="eyebrow">PROPERTY FEATURES</p>
+      <div class="features-accordion" id="features-accordion" aria-label="Property features"></div>
+    </div>
+  </section>
+
   <section class="section-video" id="video">
     <div class="video-frame" id="video-container"></div>
   </section>
@@ -913,8 +1026,147 @@
       { label: 'Lower Floor', img: '9646-creekside-drive-floorplans-2.webp', pdf: '9646-creekside-drive-floorplans-2.pdf' }
     ],
     phone: '778-817-0110',
-    email: 'info@isellvictoria.ca'
+    email: 'info@isellvictoria.ca',
+    features: [
+      {
+        heading: 'The Waterfront',
+        items: [
+          { lead: 'South-facing sandy beach.', support: 'Sun on the dock, beach, and decks all day.' },
+          { lead: '22 x 22 ft dock + 8 x 16 ft extension, built 2023.', support: 'Fully rigged with anchors, cleats, ladders, dock guards, and beaver fencing.' },
+          { lead: 'Log boom system for wave and storm protection.', support: 'Extends dock life and reduces boat movement.' },
+          { lead: 'Rock retaining wall beside beach steps.' },
+          { lead: 'Gas-powered lake pump fire suppression system included in sale.' },
+          { lead: 'Unobstructed lake views.', support: 'No trees blocking sightlines.' }
+        ]
+      },
+      {
+        heading: 'Outdoor Living',
+        items: [
+          { lead: 'Three covered decks.' },
+          { lead: 'Two fire pits.', support: 'Beach fire pit and a second beside the house with new privacy screen (2024).' },
+          { lead: 'Irrigation system for deck hanging baskets and driveway plantings.' },
+          { lead: 'Propane lines pre-installed on top deck for overhead heaters.' },
+          { lead: 'Parking for 8 vehicles with protected overflow space.' }
+        ]
+      },
+      {
+        heading: 'The Garage',
+        items: [
+          { lead: 'Detached double garage, heated.', support: '9 ft entrance clearance for boats, side-mounted door motor, reinforced walls for heavy storage or future loft conversion.' },
+          { lead: 'Metal roof with snow breaks and gutter guards.' }
+        ]
+      },
+      {
+        heading: 'Interior',
+        items: [
+          { lead: 'Quartz countertops throughout kitchen and bathrooms.' },
+          { lead: 'Heated floors in all three bathrooms.' },
+          { lead: 'Accordion doors off kitchen open fully to the deck.' },
+          { lead: 'Four skylights.', support: 'Two in the living room, one in the primary bathroom, one over the stairwell with remote-controlled opening.' },
+          { lead: 'Under-cabinet lighting in kitchen.' },
+          { lead: 'Soft-close drawers and cabinets (2019).' },
+          { lead: 'LED lighting throughout.' },
+          { lead: 'Fully furnished.', support: 'Indoor and outdoor furniture, appliances, BBQ, and more. Subject to negotiation.' }
+        ]
+      },
+      {
+        heading: 'Systems',
+        items: [
+          { lead: 'Heat pump (2020) for heating and air conditioning.', support: 'Baseboard and electric fan backup.' },
+          { lead: 'Metal roof recently inspected, no issues.' },
+          { lead: 'Municipal water from the Youbou Well system.', support: 'Clean, potable, no treatment required.' },
+          { lead: 'Septic connected to municipal sewer.', support: 'Pumps to municipal system, no septic field, proactively maintained annually.' },
+          { lead: 'Hot water tank spill basin plumbed to septic.' },
+          { lead: 'Monitored alarm system.', support: 'Infrared sensors, door contacts, wireless modem backup, and extended battery.' },
+          { lead: 'Remote-controlled outdoor lighting and bathroom fans.' },
+          { lead: 'Underground power lines.' },
+          { lead: 'Crawl space insulated with electric heater and dehumidifier.' }
+        ]
+      },
+      {
+        heading: 'Ownership Notes',
+        items: [
+          { lead: 'Creekside Residents Association fee approximately $60/year for private road snow removal.', support: 'No fees since 2020 (surplus budget). Association has no authority over individual properties.' },
+          { lead: 'Rights of way for road access and walking path.', support: 'Property line runs to Youbou Road and down to the low water mark.' },
+          { lead: 'Fire hydrant directly across the street.', support: 'Youbou Fire Department coverage.' }
+        ]
+      }
+    ]
   };
+
+  function initFeatures() {
+    var featuresSection = document.getElementById('features');
+    var featuresRoot = document.getElementById('features-accordion');
+    if (!featuresSection || !featuresRoot) return;
+    var list = CFG.features;
+    if (!list || !list.length) return;
+    featuresSection.removeAttribute('hidden');
+    var chevronNs = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+
+    list.forEach(function (cat, idx) {
+      var item = document.createElement('div');
+      item.className = 'features-acc-item';
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'features-acc__trigger';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', 'features-panel-' + idx);
+      btn.id = 'features-trigger-' + idx;
+
+      var titleSpan = document.createElement('span');
+      titleSpan.textContent = cat.heading || '';
+      var chev = document.createElement('span');
+      chev.className = 'features-acc__chevron';
+      chev.innerHTML = chevronNs;
+
+      btn.appendChild(titleSpan);
+      btn.appendChild(chev);
+
+      var panel = document.createElement('div');
+      panel.className = 'features-acc__panel';
+      panel.id = 'features-panel-' + idx;
+      panel.setAttribute('role', 'region');
+      panel.setAttribute('aria-labelledby', 'features-trigger-' + idx);
+
+      var inner = document.createElement('div');
+      inner.className = 'features-acc__inner';
+      var ul = document.createElement('ul');
+      ul.className = 'features-acc__list';
+      (cat.items || []).forEach(function (item) {
+        var li = document.createElement('li');
+        var span = document.createElement('span');
+        if (item.support) {
+          span.innerHTML = '<strong>' + item.lead + '</strong> ' + item.support;
+        } else {
+          span.textContent = item.lead;
+        }
+        li.appendChild(span);
+        ul.appendChild(li);
+      });
+      inner.appendChild(ul);
+      panel.appendChild(inner);
+
+      btn.addEventListener('click', function () {
+        var isOpen = btn.getAttribute('aria-expanded') === 'true';
+        featuresRoot.querySelectorAll('.features-acc-item').forEach(function (node) {
+          var t = node.querySelector('.features-acc__trigger');
+          var p = node.querySelector('.features-acc__panel');
+          if (!t || !p) return;
+          t.setAttribute('aria-expanded', 'false');
+          p.classList.remove('is-open');
+        });
+        if (!isOpen) {
+          btn.setAttribute('aria-expanded', 'true');
+          panel.classList.add('is-open');
+        }
+      });
+
+      item.appendChild(btn);
+      item.appendChild(panel);
+      featuresRoot.appendChild(item);
+    });
+  }
+  initFeatures();
 
   var heroBg = document.getElementById('hero-bg');
   var r2Listing = CFG.r2Base + '/listings/' + CFG.addressSlug + '/';
@@ -929,28 +1181,18 @@
   var galleryActions = document.getElementById('gallery-actions');
   var totalPhotos = CFG.photoList.length;
   var galleryCells = [];
-  var expandLevel = 0;
   var expandBtn = null;
 
   function galleryIsMobile() {
     return typeof window.matchMedia !== 'undefined' && window.matchMedia('(max-width: 640px)').matches;
   }
 
-  function galleryInitialCount() {
-    return galleryIsMobile() ? 6 : 12;
-  }
-
-  function galleryMidCount() {
-    return galleryIsMobile() ? 12 : 24;
+  function galleryGridCap() {
+    return galleryIsMobile() ? 8 : 15;
   }
 
   function galleryVisibleCount() {
-    var max = totalPhotos;
-    var initialV = galleryInitialCount();
-    var midV = galleryMidCount();
-    if (expandLevel === 0) return Math.min(initialV, max);
-    if (expandLevel === 1) return Math.min(midV, max);
-    return max;
+    return Math.min(galleryGridCap(), totalPhotos);
   }
 
   function makeGalleryCell(i) {
@@ -997,38 +1239,18 @@
 
   function updateGalleryButton() {
     if (!expandBtn || !galleryActions) return;
-    var max = totalPhotos;
-    var initialV = galleryInitialCount();
-    var midV = galleryMidCount();
-    if (max <= initialV) {
+    var cap = galleryGridCap();
+    if (CFG.photoList.length <= cap) {
       expandBtn.style.display = 'none';
       return;
     }
     expandBtn.style.display = '';
-    if (expandLevel === 0) {
-      expandBtn.textContent = max > midV ? 'See more photos' : 'See all photos';
-      expandBtn.setAttribute('aria-expanded', 'false');
-    } else if (expandLevel === 1) {
-      expandBtn.textContent = max > midV ? 'See all photos' : 'Show less';
-      expandBtn.setAttribute('aria-expanded', 'true');
-    } else {
-      expandBtn.textContent = 'Show less';
-      expandBtn.setAttribute('aria-expanded', 'true');
-    }
+    expandBtn.textContent = 'View All ' + CFG.photoList.length + ' Photos';
   }
 
   function onGalleryButtonClick() {
-    var max = totalPhotos;
-    var midV = galleryMidCount();
-    if (expandLevel === 0) {
-      expandLevel = max > midV ? 1 : 2;
-    } else if (expandLevel === 1) {
-      expandLevel = max > midV ? 2 : 0;
-    } else {
-      expandLevel = 0;
-    }
-    applyGalleryVisibility();
-    updateGalleryButton();
+    console.log('gallery button clicked');
+    openLightbox(0);
   }
 
   if (grid && galleryActions) {
@@ -1050,7 +1272,6 @@
       var prevMobile = galleryIsMobile();
       setTimeout(function () {
         if (prevMobile !== galleryIsMobile()) {
-          expandLevel = 0;
           applyGalleryVisibility(true);
           updateGalleryButton();
         }
@@ -1069,8 +1290,9 @@
     return r2Listing + CFG.photoList[i];
   }
 
-  function openLightbox(i) {
-    lbIndex = i;
+  function openLightbox(idx) {
+    console.log('openLightbox called with index', idx);
+    lbIndex = idx;
     lbImg.src = photoUrl(lbIndex);
     lbImg.alt = 'Property photo ' + (lbIndex + 1);
     lb.hidden = false;
