@@ -4,6 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>9646 Creekside Drive, Youbou BC | Bil Greene, PREC</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" id="og-title" content="">
+  <meta property="og:description" id="og-description" content="">
+  <meta property="og:image" id="og-image" content="">
+  <meta property="og:url" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="tw-title" content="">
+  <meta name="twitter:description" id="tw-description" content="">
+  <meta name="twitter:image" id="tw-image" content="">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -156,6 +165,13 @@
       font-size: 1rem;
       color: rgba(255, 255, 255, 0.72);
       font-weight: 400;
+    }
+    .hero__main-ctas {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
     }
     .hero__price-block {
       text-align: right;
@@ -781,6 +797,44 @@
     .lightbox__prev { left: 1rem; }
     .lightbox__next { right: 1rem; }
 
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 4px;
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
+    }
+    .share-btn:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    .share-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a1a1a;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    .share-toast.is-visible {
+      opacity: 1;
+    }
+
     @media (max-width: 1024px) {
       .specs__inner {
         grid-template-columns: repeat(2, 1fr);
@@ -843,6 +897,13 @@
           <p class="hero__eyebrow">COWICHAN LAKE WATERFRONT</p>
           <h1 class="hero__title">Designed for life on the water.</h1>
           <p class="hero__address">9646 Creekside Drive, Youbou BC</p>
+          <div class="hero__main-ctas">
+            <a class="hero__nav-cta" href="tel:+17788170110">Book a Showing</a>
+            <button class="share-btn" id="share-btn" aria-label="Share this property">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              Share
+            </button>
+          </div>
         </div>
         <div class="hero__price-block">
           <p class="hero__price">$2,249,900</p>
@@ -1006,6 +1067,7 @@
     addressSlug: '9646-creekside-drive',
     displayAddress: '9646 Creekside Drive',
     municipality: 'Youbou, BC',
+    tagline: 'Waterfront living on the sunny side of Cowichan Lake.',
     listPrice: '$2,249,900',
     beds: 4,
     baths: 3,
@@ -1093,6 +1155,46 @@
       }
     ]
   };
+
+  (function() {
+    var ogTitle = CFG.displayAddress + ', ' + CFG.municipality + ' | ' + CFG.listPrice;
+    var ogDesc = CFG.beds + ' bed · ' + CFG.baths + ' bath · ' + CFG.finSqft + ' sq ft · ' + CFG.tagline;
+    var ogImage = CFG.r2Base + '/listings/' + CFG.addressSlug + '/' + CFG.photoList[0];
+    document.getElementById('og-title').setAttribute('content', ogTitle);
+    document.getElementById('og-description').setAttribute('content', ogDesc);
+    document.getElementById('og-image').setAttribute('content', ogImage);
+    document.getElementById('tw-title').setAttribute('content', ogTitle);
+    document.getElementById('tw-description').setAttribute('content', ogDesc);
+    document.getElementById('tw-image').setAttribute('content', ogImage);
+    document.querySelector('meta[property="og:url"]').setAttribute('content', window.location.href);
+  })();
+
+  (function () {
+    var btn = document.getElementById('share-btn');
+    var toast = document.getElementById('share-toast');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var shareData = {
+        title: document.getElementById('og-title').getAttribute('content'),
+        text: document.getElementById('og-description').getAttribute('content'),
+        url: window.location.href
+      };
+      function showToast() {
+        if (!toast) return;
+        toast.classList.add('is-visible');
+        setTimeout(function () {
+          toast.classList.remove('is-visible');
+        }, 2000);
+      }
+      if (navigator.share) {
+        navigator.share(shareData).catch(function () {});
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareData.url).then(showToast).catch(function () {});
+      } else {
+        showToast();
+      }
+    });
+  })();
 
   function initFeatures() {
     var featuresSection = document.getElementById('features');
@@ -1432,5 +1534,6 @@
   });
 })();
   </script>
+  <div class="share-toast" id="share-toast">Link copied</div>
 </body>
 </html>
