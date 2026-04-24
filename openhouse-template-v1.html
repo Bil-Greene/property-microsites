@@ -154,18 +154,6 @@
       letter-spacing: -0.02em;
       max-width: 22ch;
     }
-    .hero__ended-banner {
-      margin-top: 1rem;
-      padding: 0.65rem 1rem;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.88);
-      max-width: 36ch;
-      display: none;
-    }
-    .hero__ended-banner.is-visible { display: block; }
     .hero__address {
       margin-top: 1rem;
       font-size: 1.05rem;
@@ -227,6 +215,9 @@
       align-items: stretch;
     }
     .specs__inner--oh {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .specs__inner--oh.has-listing-agent {
       grid-template-columns: repeat(3, 1fr);
     }
     .specs__cell {
@@ -258,11 +249,13 @@
       color: rgba(255, 255, 255, 0.45);
       margin-top: 0.35rem;
     }
-    .specs__label--time {
-      text-transform: none;
-      letter-spacing: 0.02em;
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.55);
+    .specs__sublabel {
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.06em;
+      margin-top: 0.2rem;
+      line-height: 1.3;
+      text-align: center;
     }
     .specs__badge {
       display: inline-flex;
@@ -424,67 +417,173 @@
       background: var(--bg-light);
       padding: 4.5rem 1.5rem;
     }
-    .section-details .eyebrow {
-      color: var(--muted);
+    /* Replaced "Open house details" with compact key facts */
+    .section-details.section-details--facts {
+      background: var(--bg-dark-2);
+      color: #fff;
+      padding: 4.5rem 1.5rem;
+    }
+    .section-details--facts .facts-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .section-details--facts .eyebrow {
+      color: var(--gold);
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       margin-bottom: 0.75rem;
     }
-    .section-details h2 {
+    .section-details--facts h2 {
       font-size: clamp(1.5rem, 2.5vw, 2rem);
       font-weight: 800;
-      color: var(--text);
+      color: #fff;
       margin-bottom: 2rem;
+      letter-spacing: -0.02em;
     }
-    .details-grid {
-      max-width: 1100px;
-      margin: 0 auto;
+    .facts-dl {
+      margin: 0;
+      padding: 0;
+    }
+    .facts-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: start;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      align-items: baseline;
     }
-    .details-map-wrap {
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--border);
-      min-height: 320px;
+    .facts-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin: 0;
     }
-    .details-map-wrap iframe {
-      width: 100%;
-      height: 360px;
-      border: 0;
-      display: block;
+    .facts-value {
+      margin: 0;
+      color: #fff;
+      font-weight: 400;
+      text-align: right;
     }
-    .details-dir-btn {
-      margin-top: 1rem;
+
+    /* "What's next" section */
+    .section-next {
+      background: var(--bg-dark);
+      color: #fff;
+      padding: 4.5rem 1.5rem;
     }
-    .details-copy h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
+    .section-next .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-next .eyebrow {
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       margin-bottom: 0.75rem;
-      color: var(--text);
     }
-    .details-copy p {
-      margin: 0 0 1rem;
-      color: var(--body);
-      font-size: 1rem;
+    .section-next h2 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
     }
-    .details-host {
-      margin-top: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
+    .next-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
     }
-    .details-host strong { display: block; margin-bottom: 0.5rem; color: var(--text); }
-    .details-host a {
-      color: var(--blue);
+    .next-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+    .next-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.65rem;
+      line-height: 1.25;
+    }
+    .next-card p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.7;
+    }
+    .next-action {
+      margin-top: 1rem;
+      color: var(--gold);
       font-weight: 600;
       text-decoration: none;
+      font-size: 0.95rem;
+      display: block;
     }
-    .details-host a:hover { text-decoration: underline; }
+    .next-action:hover { text-decoration: underline; }
+    .next-muted {
+      margin-top: 0.35rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.85rem;
+    }
+    .oh-agent {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      max-width: 480px;
+    }
+    .oh-agent__photo {
+      flex-shrink: 0;
+      width: 100px;
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background: var(--bg-dark-2);
+    }
+    .oh-agent__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .oh-agent__listed-by {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.4);
+      margin: 0 0 0.25rem;
+    }
+    .oh-agent__name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 0.2rem;
+    }
+    .oh-agent__brokerage {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin: 0 0 0.65rem;
+    }
+    .oh-agent__contact {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gold);
+      text-decoration: none;
+      margin-bottom: 0.25rem;
+    }
+    .oh-agent__contact:hover { text-decoration: underline; }
 
     .section-plans {
       background: var(--bg-light);
@@ -592,112 +691,6 @@
       color: var(--blue-hover);
     }
 
-    .section-missed {
-      background: var(--bg-dark);
-      color: #fff;
-      padding: 4.5rem 1.5rem;
-    }
-    .section-missed .eyebrow {
-      color: var(--gold);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-    .missed-grid {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 2.5rem;
-      align-items: start;
-    }
-    .missed-copy h2 {
-      font-size: clamp(1.5rem, 2.8vw, 2rem);
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.02em;
-    }
-    .missed-copy p {
-      color: rgba(255, 255, 255, 0.65);
-      margin: 0 0 1.5rem;
-      max-width: 40ch;
-    }
-    .missed-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-    .btn-primary--missed { min-height: 48px; }
-    .btn-outline-dark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0.75rem 1.35rem;
-      background: transparent;
-      color: #fff !important;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      font-size: 0.95rem;
-      font-family: var(--font-display);
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .btn-outline-dark:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    .missed-listed-by {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.45);
-      margin: 0 0 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    .missed-agent {
-      text-align: center;
-    }
-    .missed-agent-photo {
-      border-radius: 4px;
-      overflow: hidden;
-      aspect-ratio: 4 / 5;
-      max-width: 220px;
-      margin: 0 auto 1rem;
-      background: var(--bg-dark-2);
-    }
-    .missed-agent-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .missed-agent h3 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 0.25rem;
-    }
-    .missed-agent .sub {
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 0.75rem;
-    }
-    .missed-agent p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.72);
-    }
-    .missed-agent p + p { margin-top: 0.35rem; }
-    .missed-agent a {
-      color: var(--gold);
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .missed-agent a:hover { text-decoration: underline; }
 
     .cta-footer {
       background: var(--bg-dark);
@@ -826,9 +819,6 @@
         grid-column: auto;
       }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .details-grid { grid-template-columns: 1fr; }
-      .missed-grid { grid-template-columns: 1fr; }
-      .missed-agent { order: -1; margin-bottom: 0.5rem; }
       .specs__inner--oh {
         display: flex;
         flex-direction: column;
@@ -838,6 +828,9 @@
         border-right: none;
         border-bottom: none;
       }
+      .next-grid { grid-template-columns: 1fr; }
+      .facts-row { grid-template-columns: 1fr; }
+      .facts-value { text-align: left; }
     }
 
     @media (max-width: 640px) {
@@ -868,8 +861,6 @@
     </nav>
     <div class="hero__main">
       <p class="hero__eyebrow">Open House</p>
-      <p class="hero__event" id="hero-event"></p>
-      <p class="hero__ended-banner" id="hero-ended" role="status">This open house has ended. Book a private showing below.</p>
       <div class="hero__address">
         <span id="hero-street"></span>
         <span id="hero-muni"></span>
@@ -891,44 +882,45 @@
       <div class="specs__cell">
         <div class="specs__label">HOSTED BY</div>
         <div class="specs__value specs__value--oh-name" id="host-strip-name"></div>
-      </div>
-      <div class="specs__cell">
-        <div class="specs__label">OPEN HOUSE</div>
-        <div class="specs__value" id="host-strip-date"></div>
-        <div class="specs__label specs__label--time" id="host-strip-time"></div>
+        <div class="specs__sublabel" id="host-strip-sub">Personal Real Estate Corporation</div>
       </div>
       <div class="specs__cell">
         <div class="specs__value specs__value--cta-wrap">
           <a class="specs__badge specs__badge--link" id="host-strip-contact" href="#">Contact Host</a>
         </div>
       </div>
+      <div class="specs__cell specs__cell--listing" id="host-strip-listing-cell" hidden>
+        <div class="specs__label">LISTED BY</div>
+        <div class="specs__value" id="host-strip-listing-name"></div>
+        <div class="specs__sublabel" id="host-strip-listing-brokerage"></div>
+      </div>
     </div>
   </section>
 
   <section class="section-why" id="why-attend" aria-labelledby="why-heading">
     <div style="max-width:1100px;margin:0 auto;">
-      <p class="eyebrow">Why visit</p>
-      <h2 id="why-heading">Worth Seeing in Person</h2>
+      <p class="eyebrow">The property</p>
+      <h2 id="why-heading">About this home</h2>
       <div class="why-grid">
         <article class="why-card">
-          <h3>Thoughtful layout for daily life</h3>
-          <p>Bedrooms and living spaces are arranged so the home works for busy mornings, homework, and quiet evenings without everyone on top of one another.</p>
+          <h3>The layout works</h3>
+          <p>Bedrooms and living areas are arranged so the home functions across routines — mornings, work-from-home days, and evenings — without the spaces competing with each other.</p>
         </article>
         <article class="why-card">
-          <h3>Move-in quality you can feel</h3>
-          <p>Finishes and systems are easy to gloss over online; walking the halls shows how the home was cared for and where the value actually sits.</p>
+          <h3>The condition is real</h3>
+          <p>Finishes and systems are easier to assess in person than online. What you walked through reflects how this home has been maintained.</p>
         </article>
         <article class="why-card">
-          <h3>Colwood convenience, calmer streets</h3>
-          <p>Schools, parks, and commuter routes are close, while the pocket around Jadel stays residential—worth comparing to anything else you are touring this weekend.</p>
+          <h3>The location holds up</h3>
+          <p>Colwood's convenience tends to read better on paper than it does in person. The streets around Jadel are quieter and more established than the municipal label suggests.</p>
         </article>
         <article class="why-card">
-          <h3>Outdoor space that fits real routines</h3>
-          <p>Deck, yard, and storage are easier to judge when you are standing on them with your own furniture and habits in mind.</p>
+          <h3>The outdoor space is usable</h3>
+          <p>Deck, yard, and storage are sized for actual use. Worth comparing against anything else you toured this weekend.</p>
         </article>
         <article class="why-card">
-          <h3>Ask questions on the spot</h3>
-          <p>Open house hours mean you can compare notes with the listing side in real time—no waiting on email chains before you decide your next step.</p>
+          <h3>The numbers are straightforward</h3>
+          <p>Price, taxes, strata, and the suite income picture are all available. If you want comparable sales for context, I can send those directly.</p>
         </article>
       </div>
     </div>
@@ -942,36 +934,11 @@
     </div>
   </section>
 
-  <section class="section-details" id="open-house-details">
-    <div style="max-width:1100px;margin:0 auto;">
-      <p class="eyebrow">Open house</p>
-      <h2>Details &amp; directions</h2>
-      <div class="details-grid">
-        <div>
-          <div class="details-map-wrap">
-            <iframe
-              id="map-embed"
-              title="Map of 641 Jadel Dr, Colwood BC"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2647.367079881095!2d-123.50128912328549!3d48.43029417127741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548f0cfbeda9176b%3A0x57b25d2a89ef3338!2s641%20Jadel%20Dr%2C%20Victoria%2C%20BC%20V9C%202L3!5e0!3m2!1sen!2sca!4v1776314432638!5m2!1sen!2sca"
-              allowfullscreen></iframe>
-          </div>
-          <div class="details-dir-btn">
-            <a class="btn-primary" id="details-directions" href="#" target="_blank" rel="noopener">Get Directions</a>
-          </div>
-        </div>
-        <div class="details-copy">
-          <h3 id="details-when"></h3>
-          <p><strong>Parking:</strong> Street parking available on Jadel Dr</p>
-          <p><strong>Entry:</strong> Come on in — no appointment needed during open house hours</p>
-          <div class="details-host">
-            <strong id="hosted-by"></strong>
-            <p style="margin:0.35rem 0 0;"><a id="host-phone-link" href="#">Phone</a></p>
-            <p style="margin:0.35rem 0 0;"><a id="host-email-link" href="#">Email</a></p>
-          </div>
-        </div>
-      </div>
+  <section class="section-details section-details--facts" id="open-house-details">
+    <div class="facts-inner">
+      <p class="eyebrow">The details</p>
+      <h2>Key facts</h2>
+      <dl class="facts-dl" id="facts-dl" aria-label="Key facts"></dl>
     </div>
   </section>
 
@@ -1000,26 +967,39 @@
     </div>
   </section>
 
-  <section class="section-missed" id="contact">
-    <div class="missed-grid">
-      <div class="missed-copy">
-        <p class="eyebrow">After the open house</p>
-        <h2>Can&apos;t make it?</h2>
-        <p>Book a private showing at a time that works for you.</p>
-        <div class="missed-ctas">
-          <a class="btn-primary btn-primary--missed" id="missed-call" href="#">Call or Text</a>
-          <a class="btn-outline-dark" id="missed-email" href="#">Send an Email</a>
-        </div>
+  <section class="section-next" id="whats-next" aria-labelledby="next-heading">
+    <div class="inner">
+      <p class="eyebrow">After the open house</p>
+      <h2 id="next-heading">What would you like to do next?</h2>
+      <div class="next-grid">
+        <article class="next-card">
+          <h3>Book a second look</h3>
+          <p>A private showing gives you time to move at your own pace, measure rooms, or bring someone whose opinion you trust.</p>
+          <a class="next-action" id="next-tel" href="#"></a>
+          <div class="next-muted">or forward this page to your agent</div>
+        </article>
+        <article class="next-card">
+          <h3>Get the full package</h3>
+          <p>I can send you the detailed feature sheet, floor plans, and recent comparable sales for this neighbourhood.</p>
+          <a class="next-action" id="next-email" href="#"></a>
+        </article>
+        <article class="next-card">
+          <h3>How buying works in Victoria</h3>
+          <p>If you want to understand the offer process, financing timelines, or what to look for in a second visit, this is a straightforward place to start.</p>
+          <a class="next-action" href="https://isellvictoria.ca/buying.html" target="_blank">Read the buying guide</a>
+        </article>
       </div>
-      <div class="missed-agent">
-        <div class="missed-agent-photo">
-          <img id="agent-headshot" src="" width="440" height="550" alt="" loading="lazy">
+      <div class="oh-agent">
+        <div class="oh-agent__photo">
+          <img id="oh-agent-headshot" src="" alt="" loading="lazy" width="440" height="550">
         </div>
-        <p class="missed-listed-by" id="missed-listed-by"></p>
-        <h3 id="agent-name-block"></h3>
-        <p class="sub">RE/MAX Camosun, Victoria BC</p>
-        <p><a id="agent-phone-block" href="#"></a></p>
-        <p><a id="agent-email-block" href="#"></a></p>
+        <div class="oh-agent__info">
+          <p class="oh-agent__listed-by">Listed by</p>
+          <h3 class="oh-agent__name" id="oh-agent-name"></h3>
+          <p class="oh-agent__brokerage">RE/MAX Camosun, Victoria BC</p>
+          <a class="oh-agent__contact" id="oh-agent-phone" href="#"></a>
+          <a class="oh-agent__contact" id="oh-agent-email" href="#"></a>
+        </div>
       </div>
     </div>
   </section>
@@ -1051,12 +1031,15 @@
     finSqft:         '2,174',
     tagline:         'A well-built family home in one of Colwood\'s most convenient locations.',
     mlsNumber:       'MLS® 123456',
-    ohDate:          'Saturday, May 10',
-    ohTime:          '1:00 – 3:00 PM',
-    ohStatus:        'upcoming',
     hostName:        'Bil Greene, PREC',
     hostPhone:       '778-817-0110',
     hostEmail:       'info@isellvictoria.ca',
+    listingAgent:     null,
+    listingBrokerage: null,
+    lotSize:         '8,000 sq ft',
+    yearBuilt:       '1967',
+    parking:         '2 — driveway and carport',
+    strataFee:       null,
     r2Base:          'https://pub-d27d6c344c4d40678d63b932074aece2.r2.dev',
     heroPhoto:       '1.jpg',
     photoList: [
@@ -1103,11 +1086,6 @@
     navBookMobile.textContent = CFG.agentPhone;
   }
 
-  document.getElementById('hero-event').textContent = CFG.ohDate + ' · ' + CFG.ohTime;
-  if (CFG.ohStatus === 'ended') {
-    var ended = document.getElementById('hero-ended');
-    if (ended) ended.classList.add('is-visible');
-  }
   document.getElementById('hero-street').textContent = CFG.displayAddress;
   document.getElementById('hero-muni').textContent = CFG.municipality;
   document.getElementById('hero-price-specs').textContent =
@@ -1115,59 +1093,101 @@
   document.getElementById('hero-tagline').textContent = CFG.tagline;
 
   var ctaDir = document.getElementById('cta-directions');
-  var detailsDir = document.getElementById('details-directions');
   if (ctaDir) { ctaDir.href = CFG.mapDirectionsUrl; }
-  if (detailsDir) { detailsDir.href = CFG.mapDirectionsUrl; }
 
   var hostStripName = document.getElementById('host-strip-name');
-  var hostStripDate = document.getElementById('host-strip-date');
-  var hostStripTime = document.getElementById('host-strip-time');
   var hostStripContact = document.getElementById('host-strip-contact');
   if (hostStripName) hostStripName.textContent = CFG.hostName;
-  if (hostStripDate) hostStripDate.textContent = CFG.ohDate;
-  if (hostStripTime) hostStripTime.textContent = CFG.ohTime;
   if (hostStripContact) hostStripContact.href = telHref(CFG.hostPhone);
 
-  document.getElementById('details-when').textContent = CFG.ohDate + ' · ' + CFG.ohTime;
-  document.getElementById('hosted-by').textContent = 'Hosted by ' + CFG.hostName;
-  var hostPhone = document.getElementById('host-phone-link');
-  var hostEmail = document.getElementById('host-email-link');
-  if (hostPhone) {
-    hostPhone.href = telHref(CFG.hostPhone);
-    hostPhone.textContent = CFG.hostPhone;
+  if (CFG.listingAgent) {
+    var listingCell = document.getElementById('host-strip-listing-cell');
+    var listingName = document.getElementById('host-strip-listing-name');
+    var listingBrokerage = document.getElementById('host-strip-listing-brokerage');
+    var stripInner = document.querySelector('.specs__inner--oh');
+    if (listingCell) listingCell.removeAttribute('hidden');
+    if (listingName) listingName.textContent = CFG.listingAgent;
+    if (listingBrokerage) listingBrokerage.textContent = CFG.listingBrokerage || '';
+    if (stripInner) stripInner.classList.add('has-listing-agent');
   }
-  if (hostEmail) {
-    hostEmail.href = 'mailto:' + CFG.hostEmail;
-    hostEmail.textContent = CFG.hostEmail;
-  }
-  document.getElementById('missed-call').href = telHref(CFG.agentPhone);
-  document.getElementById('missed-email').href = 'mailto:' + CFG.agentEmail;
 
-  var head = document.getElementById('agent-headshot');
-  if (head) {
-    head.src = CFG.agentHeadshot;
-    head.alt = CFG.agentName;
-  }
-  var listedByEl = document.getElementById('missed-listed-by');
-  if (listedByEl) listedByEl.textContent = 'Listed by';
-  document.getElementById('agent-name-block').textContent = CFG.agentName;
-  var ap = document.getElementById('agent-phone-block');
-  var ae = document.getElementById('agent-email-block');
-  if (ap) {
-    ap.href = telHref(CFG.agentPhone);
-    ap.textContent = CFG.agentPhone;
-  }
-  if (ae) {
-    ae.href = 'mailto:' + CFG.agentEmail;
-    ae.textContent = CFG.agentEmail;
-  }
+  /* Key facts list (omit strata fee when null) */
+  (function () {
+    var dl = document.getElementById('facts-dl');
+    if (!dl) return;
+    var rows = [
+      ['List price', CFG.listPrice],
+      ['Bedrooms', CFG.beds],
+      ['Bathrooms', CFG.baths],
+      ['Finished area', String(CFG.finSqft) + ' sq ft'],
+      ['Lot size', CFG.lotSize],
+      ['Year built', CFG.yearBuilt],
+      ['Parking', CFG.parking],
+      ['MLS', CFG.mlsNumber],
+      ['Strata fee', CFG.strataFee],
+    ];
+    rows.forEach(function (r) {
+      var label = r[0];
+      var value = r[1];
+      if (value === null || typeof value === 'undefined' || value === '') return;
+      var wrap = document.createElement('div');
+      wrap.className = 'facts-row';
+      var dt = document.createElement('dt');
+      dt.className = 'facts-label';
+      dt.textContent = label;
+      var dd = document.createElement('dd');
+      dd.className = 'facts-value';
+      dd.textContent = String(value);
+      wrap.appendChild(dt);
+      wrap.appendChild(dd);
+      dl.appendChild(wrap);
+    });
+  })();
+
+  /* What's next links */
+  (function () {
+    var tel = document.getElementById('next-tel');
+    if (tel) {
+      tel.href = telHref(CFG.agentPhone);
+      tel.textContent = CFG.agentPhone;
+    }
+    var em = document.getElementById('next-email');
+    if (em) {
+      em.href = 'mailto:' + CFG.agentEmail;
+      em.textContent = CFG.agentEmail;
+    }
+
+    var ohHead = document.getElementById('oh-agent-headshot');
+    if (ohHead) {
+      ohHead.src = CFG.agentHeadshot;
+      ohHead.alt = CFG.agentName;
+    }
+    var ohName = document.getElementById('oh-agent-name');
+    if (ohName) ohName.textContent = CFG.agentName;
+
+    var ohListedBy = document.querySelector('.oh-agent__listed-by');
+    if (ohListedBy && CFG.listingAgent) {
+      ohListedBy.style.display = 'none';
+    }
+    var ohPhone = document.getElementById('oh-agent-phone');
+    if (ohPhone) {
+      ohPhone.href = telHref(CFG.agentPhone);
+      ohPhone.textContent = CFG.agentPhone;
+    }
+    var ohEmail = document.getElementById('oh-agent-email');
+    if (ohEmail) {
+      ohEmail.href = 'mailto:' + CFG.agentEmail;
+      ohEmail.textContent = CFG.agentEmail;
+    }
+  })();
 
   var legal = document.getElementById('footer-legal');
   if (legal) {
     legal.innerHTML = 'Bil Greene Personal Real Estate Corporation · RE/MAX Camosun · ' +
       CFG.agentPhone + ' · ' + CFG.agentEmail +
       ' · <a href="https://isellvictoria.ca" target="_blank" rel="noopener">isellvictoria.ca</a> · ' +
-      CFG.mlsNumber + ' · This is not intended to solicit properties already listed.';
+      CFG.mlsNumber + ' · This is not intended to solicit properties already listed.' +
+      ' · Information given is from sources believed reliable but should not be relied upon without verification.';
   }
 
   var heroBg = document.getElementById('hero-bg');
