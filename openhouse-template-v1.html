@@ -661,11 +661,24 @@
       line-height: 1.75;
     }
 
+    .map-wrap {
+      margin-top: 1.5rem;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 420px;
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
     .btn-explore-neighbourhood {
       display: block;
       width: fit-content;
       align-items: center;
-      margin-top: 1.5rem;
+      margin-top: 1.25rem;
       padding: 0.75rem 1.35rem;
       min-height: 48px;
       background: rgba(255,255,255,0.05);
@@ -946,6 +959,14 @@
       <h2>The Neighbourhood</h2>
       <div class="copy">
         <p>Colwood blends coastal access with everyday practicality—trails, beaches, and viewpoints are part of the rhythm, while shops and services stay within a short drive. Families often choose pockets like this for the mix of schools, parks, and a straighter shot into Victoria when commute days stack up.</p>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          title="Map of 641 Jadel Dr, Colwood"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2644.123456789!2d-123.4956!3d48.4284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548f738c3b2b2b2b%3A0x1234567890abcdef!2s641%20Jadel%20Dr%2C%20Colwood%2C%20BC!5e0!3m2!1sen!2sca"
+          allowfullscreen></iframe>
       </div>
       <a class="btn-explore-neighbourhood" id="btn-neighbourhood" href="#" target="_blank" rel="noopener"></a>
     </div>
