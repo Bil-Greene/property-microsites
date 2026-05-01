@@ -1140,7 +1140,11 @@
     addCell(String(CFG.beds), 'Bedrooms');
     addCell(String(CFG.baths), 'Bathrooms');
     addCell(CFG.finSqft + ' sq ft', 'Finished interior');
-    addCell(CFG.lotAcres + ' acres', 'Lot size');
+    if (CFG.lotSqft != null) {
+      addCell(CFG.lotSqft + ' sq ft', 'Lot size');
+    } else if (CFG.lotAcres != null) {
+      addCell(CFG.lotAcres + ' acres', 'Lot size');
+    }
 
     var wfCell = document.createElement('div');
     wfCell.className = 'specs__cell';
@@ -1190,19 +1194,24 @@
       return art;
     }
 
+    var n = CFG.highlights.length;
+    var row1Count = Math.min(n, 3);
+    var row2Count = n - row1Count;
     var row1 = document.createElement('div');
     row1.className = 'highlights-row1';
-    var row2 = document.createElement('div');
-    row2.className = 'highlights-row2';
     var i;
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < row1Count; i++) {
       row1.appendChild(card(CFG.highlights[i]));
     }
-    for (i = 3; i < 5; i++) {
-      row2.appendChild(card(CFG.highlights[i]));
-    }
     wrap.appendChild(row1);
-    wrap.appendChild(row2);
+    if (row2Count > 0) {
+      var row2 = document.createElement('div');
+      row2.className = 'highlights-row2';
+      for (i = row1Count; i < n; i++) {
+        row2.appendChild(card(CFG.highlights[i]));
+      }
+      wrap.appendChild(row2);
+    }
   }
   initHighlights();
 
