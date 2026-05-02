@@ -992,24 +992,23 @@
       <div class="fp-viewer">
         <img id="fp-image" alt="Main Floor Plan" loading="lazy" style="width:100%;height:auto;display:block;">
       </div>
-      <p>
-        <a href="https://pub-d27d6c344c4d40678d63b932074aece2.r2.dev/listings/9646-creekside-drive/9646-creekside-floorplans.pdf" download="9646-creekside-drive-floorplans.pdf" class="fp-download" target="_blank" rel="noopener">Download Floor Plans (PDF)</a>
+      <p id="fp-download-wrap" hidden>
+        <a id="fp-download-link" href="#" class="fp-download" target="_blank" rel="noopener">Download Floor Plans (PDF)</a>
       </p>
     </div>
   </section>
 
   <section class="section-location" id="location">
     <p class="eyebrow">Location</p>
-    <h2>Youbou. Sunny side of Cowichan Lake.</h2>
-    <div class="copy">
-      <p>9646 Creekside is situated between the Town of Lake Cowichan and Youbou. Lake Cowichan is the service centre for the lake. Groceries, restaurants, hardware, and the full range of town amenities are a short drive east. Youbou itself is a quiet residential stretch along the south shore, with a general store and a boat launch. The town is small and low-traffic by design, which is part of the draw. Victoria is roughly 90 minutes by highway.</p>
-    </div>
-    <div class="map-wrap">
+    <h2 id="location-heading"></h2>
+    <div class="copy" id="location-copy"></div>
+    <div class="map-wrap" id="map-wrap">
       <iframe
-        title="Map of 9646 Creekside Drive, Youbou"
+        id="map-iframe"
+        title="Property map"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.917441615961!2d-124.15023302326325!3d48.85978467133237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5488cb9b629e2e69%3A0x3cd2dabbc15e0820!2s9646%20Creekside%20Dr%2C%20Youbou%2C%20BC%20V0R%203E1!5e0!3m2!1sen!2sca!4v1776203945070!5m2!1sen!2sca"
+        src=""
         allowfullscreen></iframe>
     </div>
     <a class="btn-explore-neighbourhood" id="btn-neighbourhood" href="#" target="_blank" rel="noopener"></a>
@@ -1161,18 +1160,14 @@
       badge.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 14c2-2 4-3 6-3s4 1 6 3 4 3 6 3 4-1 6-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 18c2-2 4-3 6-3s4 1 6 3 4 3 6 3 4-1 6-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/></svg> ';
       badge.appendChild(document.createTextNode(CFG.waterfrontNote || ''));
       wfVal.appendChild(badge);
-    } else {
-      wfVal.textContent = '—';
+    } else if (CFG.yearBuilt) {
+      wfVal.textContent = String(CFG.yearBuilt);
+      var ybLab = document.createElement('div');
+      ybLab.className = 'specs__label';
+      ybLab.textContent = 'Year built';
+      wfCell.appendChild(ybLab);
     }
-    var wfLab = document.createElement('div');
-    wfLab.className = 'specs__label';
-    wfLab.style.opacity = '0';
-    wfLab.style.height = '0';
-    wfLab.style.overflow = 'hidden';
-    wfLab.style.margin = '0';
-    wfLab.textContent = 'Waterfront';
     wfCell.appendChild(wfVal);
-    wfCell.appendChild(wfLab);
     inner.appendChild(wfCell);
   }
   initSpecs();
@@ -1496,7 +1491,9 @@
 
   var videoSection = document.getElementById('video');
   var videoContainer = document.getElementById('video-container');
-  if (videoContainer) {
+  if (!CFG.streamVideoId) {
+    if (videoSection) videoSection.hidden = true;
+  } else if (videoContainer) {
     var ar = CFG.videoOrientation === 'portrait' ? '9 / 16' : '16 / 9';
     videoContainer.style.aspectRatio = ar;
   }
@@ -1553,8 +1550,12 @@
     ensureStreamIframe();
   }
 
+  var fpSection = document.getElementById('floor-plans');
   var fpTabs = document.getElementById('fp-tabs');
   var fpImg = document.getElementById('fp-image');
+  if (!CFG.floorPlans || !CFG.floorPlans.length) {
+    if (fpSection) fpSection.hidden = true;
+  }
 
   function setFloorPlan(idx) {
     var fp = CFG.floorPlans[idx];
