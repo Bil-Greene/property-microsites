@@ -1059,7 +1059,7 @@
   "municipality": "Langford",
   "mlsNumber": "1023129",
   "heroEyebrow": "Langford",
-  "heroTitle": "Bear Mountain, Built Green, Zero Strata Fees",
+  "heroTitle": "1548 Marble Pl, Langford",
   "listPrice": "$1,189,900",
   "beds": 4,
   "baths": 4,
@@ -1072,33 +1072,56 @@
   "parking": "Single attached garage + driveway (2 spaces total)",
   "waterfront": false,
   "waterfrontNote": null,
-  "highlightsTitle": "Three levels built for two households, or one",
+  "highlightsTitle": "Two kitchens, no strata fee, Bear Mountain",
   "highlights": [
     {
-      "heading": "The kitchen is set up to actually cook in.",
-      "body": "Bosch appliances anchor the open main floor, paired with a large island and a dedicated walk-in pantry. The layout flows directly into the dining room, which opens onto a west-facing balcony. A bar area in the living room and a gas fireplace round out the main level without overcrowding it."
+      "heading": "The Suite",
+      "body": "The walk-out lower level includes a self-contained one-bedroom in-law suite with a separate entrance, its own laundry, and quartz countertops. The basement level is 828 sq ft finished with 9-foot ceilings, a family room, a patio, and a fenced yard. The suite operates independently from the main unit above."
     },
     {
-      "heading": "The lower suite functions as its own home.",
-      "body": "The walk-out lower level holds a self-contained one-bedroom suite with a separate entrance, its own laundry, quartz counters, and direct access to a fenced yard with patio. At 828 sq ft, it gives a tenant or family member genuine separation from the main household. The yard is landscaped and fully fenced."
+      "heading": "The Kitchen",
+      "body": "The main floor kitchen is fitted with Bosch appliances, a large island, a walk-in pantry, and quartz countertops. Engineered hardwood runs through the open-concept main floor, which also includes a bar area and gas fireplace in the living room. The dining room opens directly onto the west-facing balcony."
     },
     {
-      "heading": "BuiltGreen Platinum means the mechanical works harder.",
-      "body": "A high-efficiency ducted heat pump handles both heating and central air conditioning year-round. Insulated windows with vinyl frames, full-wall insulation, and cement fibre cladding are part of the Platinum-rated envelope. The 510 sq ft of unfinished space adds future flexibility without touching the 2,658 sq ft already finished."
+      "heading": "The Build",
+      "body": "Built by CODA Homes in 2025, this half duplex carries a BuiltGreen Platinum rating and a full building warranty. Construction is wood frame with cement fibre cladding, insulation throughout, and vinyl-framed insulated windows. Finished area is 2,658 sq ft across three levels, with an additional 510 sq ft of unfinished space."
     },
     {
-      "heading": "Upstairs, three bedrooms have room to breathe.",
-      "body": "The second floor holds all three upper bedrooms within 828 sq ft, with the primary featuring a walk-in closet and a 4-piece ensuite. Two additional bedrooms share a full 4-piece bath on the same floor. Engineered hardwood runs through the main and upper levels, with tile and vinyl in wet areas."
+      "heading": "Upper Floor",
+      "body": "The second level holds three bedrooms within 828 sq ft, including a primary with a walk-in closet and a 4-piece ensuite. Two additional bathrooms serve the upper floor, providing two full baths at that level. A skylight is among the window features noted for the upper storey."
     },
     {
-      "heading": "Freehold strata with a $0 monthly fee.",
-      "body": "This is a two-lot strata plan with no strata fee, no scheduled meetings, and no contributions to a contingency reserve fund. Ownership is freehold strata title with unrestricted rental and no pet limits beyond a number cap. The building carries a new construction warranty and was completed in 2025."
+      "heading": "The Lot",
+      "body": "The lot is 5,586 sq ft, landscaped and fully fenced, with a private garden area included as limited common property. The property faces west and sits within a family-oriented neighbourhood on Bear Mountain, five minutes from Costco, highway access, restaurants, and the Bear Mountain golf course."
     }
   ],
-  "features": [],
+  "features": [
+    {
+      "title": "Heat Pump",
+      "body": "A high-efficiency ducted heat pump provides both forced-air heating and central air conditioning throughout the main building. This system services the primary unit across the main and upper floors. The in-law suite on the lower level has its own separate heating configuration."
+    },
+    {
+      "title": "Strata Structure",
+      "body": "The strata fee is $0 and the two-lot strata plan is non-compliant with the Strata Property Act: no meetings, no minutes, no budget, and no contingency reserve fund. Rentals are unrestricted and pets are permitted with a number limit. The strata plan number is EPS10831, registered under the City of Langford."
+    },
+    {
+      "title": "Unfinished Space",
+      "body": "The property includes 510 sq ft of unfinished space in addition to the 2,658 sq ft of finished area, for a total building area of 3,168 sq ft. This unfinished area is not described further in available source material. Its location within the structure is not confirmed."
+    },
+    {
+      "title": "GST and Taxes",
+      "body": "The list price of $1,189,900 does not include GST, which is applicable as new construction. Property taxes are recorded as $0 for the 2025 tax year, consistent with a newly built property. The assessed value is listed at $1,262,000 for 2025."
+    },
+    {
+      "title": "Laundry",
+      "body": "The property includes two separate laundry setups: one within the main unit and one within the in-law suite. This allows both households to operate independently without shared access. Both are included in the full fridge, stove, washer, and dryer appliance package noted in the listing."
+    }
+  ],
   "r2Base": "https://pub-d27d6c344c4d40678d63b932074aece2.r2.dev",
   "heroPhoto": "1.jpg",
-  "photoList": [],
+  "photoList": [
+    "1.jpg"
+  ],
   "floorPlans": [],
   "streamVideoId": null,
   "videoOrientation": "landscape",
@@ -1264,11 +1287,13 @@
     var list = CFG.features;
     if (!list || !list.length) return;
     featuresSection.removeAttribute('hidden');
-    var chevronNs = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+    var chevronSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
 
-    list.forEach(function (cat, idx) {
+    list.forEach(function(feat, idx) {
+      if (!feat || !feat.title) return;
       var item = document.createElement('div');
       item.className = 'features-acc-item';
+
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'features-acc__trigger';
@@ -1277,11 +1302,10 @@
       btn.id = 'features-trigger-' + idx;
 
       var titleSpan = document.createElement('span');
-      titleSpan.textContent = cat.heading || '';
+      titleSpan.textContent = feat.title;
       var chev = document.createElement('span');
       chev.className = 'features-acc__chevron';
-      chev.innerHTML = chevronNs;
-
+      chev.innerHTML = chevronSvg;
       btn.appendChild(titleSpan);
       btn.appendChild(chev);
 
@@ -1293,30 +1317,19 @@
 
       var inner = document.createElement('div');
       inner.className = 'features-acc__inner';
-      var ul = document.createElement('ul');
-      ul.className = 'features-acc__list';
-      (cat.items || []).forEach(function (item) {
-        var li = document.createElement('li');
-        var span = document.createElement('span');
-        if (item.support) {
-          span.innerHTML = '<strong>' + item.lead + '</strong> ' + item.support;
-        } else {
-          span.textContent = item.lead;
-        }
-        li.appendChild(span);
-        ul.appendChild(li);
-      });
-      inner.appendChild(ul);
+      var p = document.createElement('p');
+      p.style.cssText = 'margin:0 0 1rem;font-size:0.95rem;color:rgba(255,255,255,0.7);line-height:1.7;font-family:var(--font-serif)';
+      p.textContent = feat.body || '';
+      inner.appendChild(p);
       panel.appendChild(inner);
 
-      btn.addEventListener('click', function () {
+      btn.addEventListener('click', function() {
         var isOpen = btn.getAttribute('aria-expanded') === 'true';
-        featuresRoot.querySelectorAll('.features-acc-item').forEach(function (node) {
+        featuresRoot.querySelectorAll('.features-acc-item').forEach(function(node) {
           var t = node.querySelector('.features-acc__trigger');
-          var p = node.querySelector('.features-acc__panel');
-          if (!t || !p) return;
-          t.setAttribute('aria-expanded', 'false');
-          p.classList.remove('is-open');
+          var pa = node.querySelector('.features-acc__panel');
+          if (t) t.setAttribute('aria-expanded', 'false');
+          if (pa) pa.classList.remove('is-open');
         });
         if (!isOpen) {
           btn.setAttribute('aria-expanded', 'true');
@@ -1341,11 +1354,33 @@
   }
 
   (function() {
+    var locationSection = document.getElementById('location');
+    var mapWrap = document.getElementById('map-wrap');
+    var mapIframe = document.getElementById('map-iframe');
+    var locationHeading = document.getElementById('location-heading');
+    var locationCopy = document.getElementById('location-copy');
+
+    if (CFG.mapEmbed) {
+      if (mapIframe) mapIframe.src = CFG.mapEmbed;
+    } else {
+      if (mapWrap) mapWrap.style.display = 'none';
+    }
+
+    if (CFG.locationHeading && locationHeading) {
+      locationHeading.textContent = CFG.locationHeading;
+    }
+    if (CFG.locationCopy && locationCopy) {
+      locationCopy.innerHTML = '<p>' + CFG.locationCopy + '</p>';
+    }
+    if (!CFG.locationHeading && !CFG.locationCopy && !CFG.mapEmbed) {
+      if (locationSection) locationSection.hidden = true;
+    }
+
     var btn = document.getElementById('btn-neighbourhood');
-    if (!btn || !CFG.neighbourhoodUrl) return;
-    btn.href = CFG.neighbourhoodUrl;
-    var municipality = CFG.municipality.split(',')[0].trim();
-    btn.textContent = 'Explore ' + municipality;
+    if (btn && CFG.municipality) {
+      var municipality = CFG.municipality.split(',')[0].trim();
+      btn.textContent = 'Explore ' + municipality;
+    }
   })();
 
   var grid = document.getElementById('gallery-grid');
