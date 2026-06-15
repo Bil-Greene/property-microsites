@@ -345,26 +345,31 @@
       max-width: 1400px;
       margin: 0 auto;
     }
+    /* Gallery: uniform 4:3 tiles; object-fit cover avoids row-stretch gaps with mixed aspect ratios */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       column-gap: 0.65rem;
       row-gap: 8px;
+      align-items: start;
     }
     .gallery-cell {
       overflow: hidden;
       min-height: 0;
       opacity: 1;
       transition: opacity 0.25s ease;
+      aspect-ratio: 4 / 3;
+      border-radius: 2px;
     }
     .gallery-cell.gallery-cell--hidden {
       display: none !important;
     }
     .gallery-cell img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
       display: block;
-      vertical-align: middle;
       cursor: pointer;
       border-radius: 2px;
       transition: opacity 0.2s;
