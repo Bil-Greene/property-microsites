@@ -66,6 +66,7 @@
     .hero__bg {
       position: absolute;
       inset: 0;
+      background-image: var(--hero-desktop);
       background-size: cover;
       background-position: center;
       transform: scale(1.12);
@@ -73,6 +74,9 @@
     }
     .hero__bg.hero__bg--ken {
       animation: kenBurns 8s ease-out forwards;
+    }
+    @media (max-width: 768px) {
+      .hero__bg { background-image: var(--hero-mobile); }
     }
     @keyframes kenBurns {
       to { transform: scale(1); }
@@ -940,7 +944,7 @@
 </head>
 <body>
   <header class="hero" id="top">
-    <div class="hero__bg" id="hero-bg" role="img" aria-label="Black & White building exterior at Fort and Cook"></div>
+    <div class="hero__bg" id="hero-bg" role="img" aria-label="Penthouse living room with city views and Black & White building exterior"></div>
     <div class="hero__overlay" aria-hidden="true"></div>
     <nav class="hero__nav" aria-label="Primary">
       <a class="hero__brand" href="https://bilgreene.com" target="_blank" rel="noopener noreferrer"><img src="https://bil-greene-blocks.myrealpagewebsite.com/_media/Logos/BG_MRP_Ballon2026.webp" alt="Bil Greene"></a>
@@ -1143,7 +1147,8 @@
     streamVideoId: '',
     videoOrientation: 'landscape',
     r2Base: 'https://pub-d27d6c344c4d40678d63b932074aece2.r2.dev',
-    heroPhoto: 'Cook-PH5-1033_004.webp',
+    heroPhoto: 'Cook-PH5-1033_001.webp',
+    heroPhotoMobile: 'Cook-PH5-1033_004.webp',
     ogImage: 'og-cover.jpg',
     walkScore: '96',
     photoList: ['Cook-PH5-1033_001.webp','Cook-PH5-1033_002.webp','Cook-PH5-1033_003.webp','Cook-PH5-1033_004.webp','Cook-PH5-1033_005.webp','Cook-PH5-1033_006.webp','Cook-PH5-1033_007.webp','Cook-PH5-1033_008.webp','Cook-PH5-1033_009.webp','Cook-PH5-1033_010.webp','Cook-PH5-1033_011.webp','Cook-PH5-1033_012.webp','Cook-PH5-1033_013.webp','Cook-PH5-1033_014.webp','Cook-PH5-1033_015.webp','Cook-PH5-1033_016.webp','Cook-PH5-1033_017.webp','Cook-PH5-1033_018.webp','Cook-PH5-1033_019.webp','Cook-PH5-1033_020.webp','Cook-PH5-1033_021.webp','Cook-PH5-1033_022.webp','Cook-PH5-1033_023.webp','Cook-PH5-1033_024.webp','Cook-PH5-1033_025.webp','Cook-PH5-1033_026.webp','Cook-PH5-1033_027.webp','Cook-PH5-1033_028.webp','Cook-PH5-1033_029.webp','Cook-PH5-1033_030.webp','Cook-PH5-1033_031.webp','Cook-PH5-1033_032.webp','Cook-PH5-1033_033.webp','Cook-PH5-1033_034.webp','Cook-PH5-1033_035.webp','Cook-PH5-1033_036.webp','Cook-PH5-1033_037.webp','Cook-PH5-1033_038.webp','Cook-PH5-1033_039.webp','Cook-PH5-1033_040.webp','Cook-PH5-1033_040-1.webp','Cook-PH5-1033_041.webp','Cook-PH5-1033_042.webp','Cook-PH5-1033_043.webp','Cook-PH5-1033_044.webp','Cook-PH5-1033_045.webp','Cook-PH5-1033_046.webp','Cook-PH5-1033_047.webp','Cook-PH5-1033_048.webp','Cook-PH5-1033_049.webp','Cook-PH5-1033_050.webp','Cook-PH5-1033_051.webp'],
@@ -1337,7 +1342,8 @@
   var heroBg = document.getElementById('hero-bg');
   var r2Listing = CFG.r2Base + '/listings/' + CFG.addressSlug + '/';
   if (heroBg) {
-    heroBg.style.backgroundImage = 'url(' + JSON.stringify(r2Listing + CFG.heroPhoto) + ')';
+    heroBg.style.setProperty('--hero-desktop', 'url(' + JSON.stringify(r2Listing + CFG.heroPhoto) + ')');
+    heroBg.style.setProperty('--hero-mobile', 'url(' + JSON.stringify(r2Listing + (CFG.heroPhotoMobile || CFG.heroPhoto)) + ')');
     setTimeout(function () {
       heroBg.classList.add('hero__bg--ken');
     }, 80);
