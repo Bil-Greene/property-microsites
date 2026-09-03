@@ -509,12 +509,32 @@
     .section-video {
       background: #000000;
       margin: 0;
-      padding: 4.5rem 0 0;
+      padding: 4.5rem 1.5rem 0;
+    }
+    .video-head {
+      max-width: 1200px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-video .eyebrow {
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-video h2 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 800;
+      color: #fff;
+      max-width: 20ch;
+      margin: 0;
+      letter-spacing: -0.02em;
     }
     .video-frame {
       position: relative;
-      width: 100%;
-      margin: 0;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
       padding: 0;
       overflow: hidden;
       background: #000000;
@@ -1054,6 +1074,10 @@
   </section>
 
   <section class="section-video" id="video">
+    <div class="video-head">
+      <p class="eyebrow">Video</p>
+      <h2>Take the tour.</h2>
+    </div>
     <div class="video-frame" id="video-container"></div>
   </section>
 
