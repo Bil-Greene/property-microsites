@@ -1383,7 +1383,10 @@
   }
 
   function galleryGridCap() {
-    return galleryIsMobile() ? 8 : 15;
+    if (typeof window.matchMedia === 'undefined') return 15;
+    if (window.matchMedia('(max-width: 640px)').matches) return 8;
+    if (window.matchMedia('(max-width: 768px)').matches) return 14;
+    return 15;
   }
 
   function galleryVisibleCount() {
