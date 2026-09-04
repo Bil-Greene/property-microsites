@@ -66,7 +66,6 @@
     .hero__bg {
       position: absolute;
       inset: 0;
-      background-image: var(--hero-desktop);
       background-size: cover;
       background-position: center;
       transform: scale(1.12);
@@ -74,9 +73,6 @@
     }
     .hero__bg.hero__bg--ken {
       animation: kenBurns 8s ease-out forwards;
-    }
-    @media (max-width: 768px) {
-      .hero__bg { background-image: var(--hero-mobile); }
     }
     @keyframes kenBurns {
       to { transform: scale(1); }
@@ -1356,8 +1352,7 @@
   var heroBg = document.getElementById('hero-bg');
   var r2Listing = CFG.r2Base + '/listings/' + CFG.addressSlug + '/';
   if (heroBg) {
-    heroBg.style.setProperty('--hero-desktop', 'url(' + JSON.stringify(r2Listing + CFG.heroPhoto) + ')');
-    heroBg.style.setProperty('--hero-mobile', 'url(' + JSON.stringify(r2Listing + (CFG.heroPhotoMobile || CFG.heroPhoto)) + ')');
+    heroBg.style.backgroundImage = 'url(' + JSON.stringify(r2Listing + CFG.heroPhoto) + ')';
     setTimeout(function () {
       heroBg.classList.add('hero__bg--ken');
     }, 80);
